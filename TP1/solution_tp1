@@ -1,43 +1,53 @@
----------- 1er Exercice ---------- 
+# TP1 - Introduction Linux
 
-1. 
-date : Donne la date + heure
+On commence toujours par ouvrir un cmd et on tape 
+```bash
+PS1="$ "
+```
 
-cal : ouvre le calendrier du mois
-cal 3 2022 : ouvre le calendrier du mois mis en argument (ici 03/22)
+## 1er Exercice  
 
-who : pas de réponse du terminal (la suite non plus car la commande c'est whoami)
+### Quelques commandes
+`$ date` : Donne la date + heure
 
-uname : Donne le nom de la distribution de l'OS
-uname -m -r : Donne la version de l'OS avec le socket du processeur + bits d'encodage (86 bits)
-uname -mrs : Donne le nom de la distribution complète (uname + uname -m -r)
+`$ cal` : Ouvre le calendrier du mois
 
-echo : print en console (en supprimant les espaces en trop)
+`$ cal 3 2022` : Ouvre le calendrier du mois mis en argument (ici 03/22)
 
+`$ who` : pas de réponse du terminal (la suite non plus car la commande c'est whoami) | *La vraie commande est `whoami`*
 
-2. Les fleches permettent de parcourir l'historique des commandes saisiePas 
-3. CTRL+L (ou cls) clear le shell
+`$ uname` : Donne le nom de la distribution de l'OS
 
-4. //Pas de saisie à mettre
+`$ uname -m -r` : Donne la version de l'OS avec le socket du processeur + bits d'encodage (86 bits)
 
-5. Supprime la ligne de commande
+`$ uname -mrs` : Donne le nom de la distribution complète (uname + uname -m -r)
 
-6. CTRL + D : Fais un son (impossible d'appliquer la commande)
+`$ echo`: print en console (en supprimant les espaces en trop)
 
-7. CTRL + D : Ferme le shell
+### Raccourcis
 
-8. L'historique entre la fermeture du shell et son réouverture ne se clear pas
+-  Les fleches permettent de parcourir l'historique des commandes saisie | *ou `CTRL+P` et `CTRL+N`* 
+-  `CTRL + L` (ou `cls`) :  clear le shell
 
+- `CTRL + U` : Supprime le contenu de la ligne
 
----------- 2e Exercice ----------
-1. pwd : Donne le chemin absolu de notre localisation
-2. cd .. : revenir au dossier précédent
+- `CTRL + D` : Ferme le shell ou tout process si rien n'est fait dessus
 
-3. cd + pwd : renvoie un chemin initial de notre session
-4. cd / : va au chemin / - ls : liste le contenu
+### Remarques
 
-5. cat affiche le contenu (on peut mettre plusieurs fichiers un après l'autre, ça les affiche à la suite)
-wc (word count) : donne nb ligne, nb mots, nb car
+L'historique entre la fermeture du shell et son réouverture ne se clear pas
+
+---
+## 2e Exercice 
+
+- `pwd` : Donne le chemin absolu de notre localisation
+- `cd ..` : revenir au dossier précédent
+- `cd` : fait revenir au home
+- `cd /` : va à la racine / du disque
+ - `ls` : liste le contenu du dossier
+
+- `cat` : affiche le contenu (on peut mettre plusieurs fichiers un après l'autre, ça les affiche à la suite)
+- `wc` (word count) : Donne nb ligne, nb mots, nb car
 
 
 9. On dirait des langues disponibles (fr, en, el, da, es, ...)
