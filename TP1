@@ -108,13 +108,21 @@ Comment l'avoir ?
 type <commande>
 
 cd : primitive
-touch : haché
+touch : haché (externe et présent dans le /bin)
 mv : haché
 cp : haché
 rm : haché
 ls : alias
 
-Plupart des programmes dans le /bin ?
+Plupart des programmes dans le usr/bin ?
 
 --------------- Exercice 6 ---------------
-commande <man>
+commande <man> : manuel des commandes externes
+commande <help> : manuel des commandes internes
+
+man ls 
+
+ls -a : all
+ls -l : Pour utiliser un format de listing long avec tous les droits
+
+rm -f : force le delete
