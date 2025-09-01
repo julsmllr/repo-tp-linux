@@ -126,3 +126,5 @@ ls -a : all
 ls -l : Pour utiliser un format de listing long avec tous les droits
 
 rm -f : force le delete
+
+touch edit timestamps
