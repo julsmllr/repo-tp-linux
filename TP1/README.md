@@ -94,7 +94,7 @@ Un chemin absolu est un chemin qui marchera tout le temps. Relatif, il dépend d
 ### Suppression de dossiers
 On utilise `rmdir`
 
-> Attention le dossier sélectionner doit être vide
+> Attention le dossier sélectionné doit être vide
 
 
 ### Création de fichiers vides
