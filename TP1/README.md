@@ -40,6 +40,7 @@ L'historique entre la fermeture du shell et son réouverture ne se clear pas
 ---
 ## 2e Exercice 
 
+### Nouvelles commandes
 - `pwd` : Donne le chemin absolu de notre localisation
 - `cd ..` : revenir au dossier précédent
 - `cd` : fait revenir au home
@@ -50,87 +51,145 @@ L'historique entre la fermeture du shell et son réouverture ne se clear pas
 - `wc` (word count) : Donne nb ligne, nb mots, nb car
 
 
-9. On dirait des langues disponibles (fr, en, el, da, es, ...)
+### Dossiers importants
 
-10. Oui (sql)
+- `share/man` : On dirait des langues disponibles (fr, en, el, da, es, ...)
 
-11. 
-echo ~ : donne le pwd du chemin initial de la sessions
+- `usr/bin` : librairies de la session
 
-Le ~ prend le chemin de base de l'utilisateur
+### Comprendre le `~` 
 
-12.
-/ 
-  usr
-    include
-    share
-      man
-  bin
-  
- -------- 3e Exercice ---------
-mkdir abeilles tp_shell/tp1 ~/arbres : Il crée 3 dossiers "Abeilles", "TP1" "Arbres"
+Le symbole `~` désigne le **home** de la session. 
 
-Chemin relatif : tp_shell/tp1, abeilles 
-Chemin Absolu : ~/arbres
+*Par exemple : un utilisateur aura comme dossier par défaut `home/utilisateur`, `~` désignera ce chemin*
 
-$ mkdir -p vivant/plante/fleur tp_shell/tp1/exos/ex1
+Donc :
 
--p : Créer des arborescence de fichiers/les répertoires intermédiaires
+- `echo ~` renvoie le `pwd` initial de la session
+- `cd ~` fait revenir au home
 
-mkdir : créer des dossiers
-rmdir : remove (dossier doit etre vide)
-touch : créer un fichier vide
+---
 
-10. MOVE
-mv : move + renommer (exemple : mv arbres/hello.c arbres/bonjour.c)
-mv arbres/hello.c arbres/bonjour.c : renomme
-mv abeilles arbres vivant/ : déplace abeilles + arbres dans vivant/
-mv bidule vivant : déplace bidule dans vivant
-mv vivant vie : renomme vivant en vie
+## 3e Exercice
+
+### Création de dossiers
+
+On utilise `mkdir`
+*Exemples :*
+
+- `mkdir abeilles tp_shell/tp1 ~/arbres` : Il crée 3 dossiers "Abeilles" à la base, "TP1" dans "tp_shell" et "Arbres" à la racine aussi avec `~`
+
+- `mkdir -p vivant/plante/fleur tp_shell/tp1/exos/ex1` | Ici `-p` permet de créer tous les dossiers intermédiaires. (Si on veut créer fleur, il faut d'abord créer plante)
 
 
-10. COPY
-cp vie/arbres/bonjour.c salut.c : créer une copie de bonjour.c dans /home/student nommé salut.c
-cp salut.c vie/abeilles/truc.txt copies : copie salut + truc dans copies (fichier puis dossier)
-cp vie/bidule tp_shell copies : erreur il faut rajouter un droit de lecture
-cp -R vie/bidule tp_shell copies : copie bidule + dossier tp_shell dans copies
-cp -R vie copie_vie : copie de vie dans un nouveau dossier copie_vie 
+### Chemin relatif et absolu
 
--R permet de copier le contenu de tout le dossier
+Un chemin absolu est un chemin qui marchera tout le temps. Relatif, il dépend du dossier dans lequel on se situe
 
+*Exemple du TP :*
 
-11. REMOVE
-rm vie/bidule : supprime bidule
-rm copies : pas possible copies est un dossier
-rm -r copies : supprime le dossier copies
-rm -R copie_vie : supprime le dossier copies_vie
--R et -r ?
-rm i- vie/arbres/bonjour.c vie/abeilles/truc.txt : supprime les fichier bonjour et truc avec une demande de confirmation (-i)
+- Chemin relatif : `tp_shell/tp1`, `abeilles` 
+- Chemin Absolu : `~/arbres` *(car ~ correspond à `home/student/`)*
+
+### Suppression de dossiers
+On utilise `rmdir`
+
+> Attention le dossier sélectionner doit être vide
 
 
---------------- Exercice 4 ---------------
-mkdir 
+### Création de fichiers vides
+On utilise `touch`
 
---------------- Exercice 5 ---------------
-Commandes externes, internes, fonctions du shell et alias
+### MOVE de fichiers
+On utilise `mv <fichier à bouger> <nouvelle destination + nouveau nom>`
 
-Comment l'avoir ? 
+- `mv : move + renommer` *(exemple : `mv arbres/hello.c arbres/bonjour.c`)*
+- `mv arbres/hello.c arbres/bonjour.c` : renomme
+- `mv abeilles arbres vivant/` : déplace `abeilles` et `arbres` dans `vivant/`
+- `mv bidule vivant` : déplace `bidule` dans `vivant/`
+- `mv vivant vie` : `vie` n'existe pas donc vivant est renommé
+
+### COPY de fichiers/Dossiers
+
+On utilise `cp <fichier à copier> <vers où copier>`
+
+- `cp vie/arbres/bonjour.c salut.c` : Créer une copie de `bonjour.c` dans `/home/student` nommé `salut.c`
+
+- `cp salut.c vie/abeilles/truc.txt copies` : copie `salut` + `truc` dans `copies` (fichier puis dossier)
+
+**Et pour copier des dossiers ?**
+
+On utilise le paramètres `-R` 
+
+- `cp vie/bidule tp_shell copies` : Il y a une erreur, tp_shell est un dossier
+- `cp -R vie/bidule tp_shell copies` : copie `bidule` + dossier `tp_shell` dans `copies`
+- `cp -R vie copie_vie` : copie de `vie` dans un nouveau dossier `copie_vie` *(vu que copie_vie n'existe pas)* 
+
+
+### REMOVE de fichiers
+
+On utilise `rm <fichier à supprimer>`
+
+- `rm vie/bidule` : supprime `bidule`
+- `rm copies` : pas possible copies est un dossier
+
+**Même raisonnement que précédemment pour les dossiers**
+
+- `rm -r copies` : supprime le dossier copies
+- `rm -R copie_vie` : supprime le dossier copies_vie
+- `rm i- vie/arbres/bonjour.c vie/abeilles/truc.txt` : supprime les fichier `bonjour` et `truc` avec une demande de confirmation (`-i`)
+
+---
+
+## Exercice 4 
+```bash
+$ mkdir Mail Rapport Web
+$ touch Rapport/rapport.txt Web/index.html
+$ mkdir Rapport/Docs
+$ mkdir Rapport/Docs/Afaire Rapport/Docs/Fait
+$ cd ~/Rapport/Docs/Afaire
+$ cd ../Fait
+$ cp ../rapport.txt ./
+$ mv rapport.txt rapport_copie.txt
+$ cd ~/Rapport
+$ cat ../Web/index.html
+$ ls ../Web
+$ cd ~
+$ rm -R Mail Rapport Web
+```
+
+---
+## Exercice 5 
+Il existe plusieurs type de commande : 
+- externes : besoin d'un librairie
+- internes : présentes dans l'OS de base
+- fonctions du shell : commandes définies par le user
+- alias : raccourcis pour des commandes du user
+
+
+### Comment connaître le type d'une commande ? 
+```bash
 type <commande>
+```
 
-cd : primitive
-touch : haché (externe et présent dans le /bin)
-mv : haché
-cp : haché
-rm : haché
-ls : alias
+- `type cd` : primitive
+- `type touch` : haché (externe et présent dans le /bin)
+- `type mv` : haché (externe et présent dans le /bin)
+- `type cp` : haché (externe et présent dans le /bin)
+- `type rm` : haché (externe et présent dans le /bin)
+- `type ls` : alias (externe et présent dans le /bin)
 
 Plupart des programmes dans le usr/bin ?
 
---------------- Exercice 6 ---------------
-commande <man> : manuel des commandes externes
-commande <help> : manuel des commandes internes
+---
 
-man ls 
+## Exercice 6
+
+commande `man` : manuel des commandes externes
+
+commande `help` : manuel des commandes internes
+
+#### Doc pour `man ls` 
 
 ls -a : all
 ls -l : Pour utiliser un format de listing long avec tous les droits
