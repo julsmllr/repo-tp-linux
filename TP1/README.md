@@ -194,6 +194,80 @@ commande `help` : manuel des commandes internes
 ls -a : all
 ls -l : Pour utiliser un format de listing long avec tous les droits
 
+
 rm -f : force le delete
 
 touch edit timestamps
+
+
+### Doc Man
+
+
+`man 1 printf` ouvre la doc de `printf` à partir de la ficher 7
+
+Dans le man d'une fonction, dans le **synopsys**, on peut trouver des choses du genre `man [man options] [[section] page ...] ...` :
+- `[]` sont en option
+- `...` sont répétables
+
+---
+
+## Exercice 7 
+
+Le caractère joker est remplacé par les fichiers présents dans le dossier. Il permet donc de faire de la recherche avec des filtres
+
+Caractères joker :
+- `*` : réprésente une chaine de car peut etre vide (pas si c'est le 1er car et qu'elle commence par un .)
+- `?` : Un seul car quelconque
+- `[]` : représente un seul car qui est dans un intervalle de car spécifié.`[a-z]`, `[0-5]`. On peut inverser la recherche. Par exemple on ne veut pas de chiffre, on utilise alors **^** `[^0-9]`
+ 
+### Création dossier
+```bash
+mkdir tp_joker
+cd tp_joker
+touch annee1 Annee2 annee4 annee45 annee41 annee510 annee_saucisse annee_banane bonbon
+```
+
+### Premières commandes
+`$ echo *` (cs.log tous les fichiers)
+`$ echo *_*` (cs.log annee_saucisse annee_banane)
+`$ echo [ab]*` (cs.log tous les fichiers avec un a ou un b) ATTENTION [] ne représente qu'un seul car (ici le premier des fichiers)
+`$ echo [^ab]*` (cs.log Annee2)
+`$ echo c*` (cs.log c*)
+`$ echo ??????` (cs.log annee1 Annee2 annee4 bonbon) (6 car)
+
+### Commandes ls
+se terminent par 5 :
+- `ls *5 (annee45)`
+
+commencent par annee4 :
+- `ls annee4*` (annee4 annee41 annee45)
+
+commencent par annee4 et ont un max de 7 lettres :
+- `ls annee4?` (annee41 annee45)
+
+commencent par annee et dont le 6e car n'est pas un chiffre :
+- `ls annee[^0-9]*` (annee_banane annee_saucisse)
+
+continennent la chaine ana :
+- `ls *ana*` (annee_banane)
+
+commencent par a ou A :
+- `ls [aA]*` (renvoie tous sauf "bonbon")
+
+dont l'avant-dernier car est 4 ou 1 :
+- `ls *[41]?` (annee41 annee45 annee510)
+
+
+### Fichiers secrets (commençant par un .)
+```bash
+$ ls .*
+```
+
+### Rechercher dans les sous-répertoires
+
+```bash
+cd /usr/include
+ls std*.h
+```
+
+Peut pas vérifier
